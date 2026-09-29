@@ -55,13 +55,6 @@ jobs:
           run-id: ${{ inputs.wine_run }}
           github-token: ${{ github.token }}
           path: build-inputs/wine
-      - name: Fetch Microsoft VCRuntime
-        run: |
-          brew install sevenzip
-          curl -L https://aka.ms/vs/17/release/vc_redist.x64.exe -o VC_redist.x64.exe
-          7zz x VC_redist.x64.exe -o/tmp/vcredist
-          mkdir -p app/Madeira/x86_64-vcruntime
-          7zz x /tmp/vcredist/.rsrc/1033/CABINET/*.cab -oapp/Madeira/x86_64-vcruntime
       - name: Build and package
         run: |
           mkdir -p ci-output
